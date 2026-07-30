@@ -1,0 +1,28 @@
+name: Build macOS arm64
+
+on:
+  workflow_dispatch:   # lets you trigger it manually from the Actions tab
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-14   # Apple Silicon (arm64) hosted runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Odin
+        uses: laytan/setup-odin@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: odin build . -out:cool_platformer -target:darwin_arm64
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cool_platformer-macos-arm64
+          path: cool_platformer
