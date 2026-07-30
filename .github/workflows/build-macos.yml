@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14   # Apple Silicon (arm64) hosted runner
+    runs-on: windows-latest   # Apple Silicon (arm64) hosted runner
 
     steps:
       - name: Checkout code
@@ -19,10 +19,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        run: odin build . -out:cool_platformer -target:darwin_arm64
+        run: odin build . -out:cool_platformer -target:windows_amd64
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: cool_platformer-macos-arm64
+          name: cool_platformer-window
           path: cool_platformer
