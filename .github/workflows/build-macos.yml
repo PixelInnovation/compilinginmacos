@@ -1,4 +1,4 @@
-name: Build macOS arm64
+name: Build Windows
 
 on:
   workflow_dispatch:   # lets you trigger it manually from the Actions tab
